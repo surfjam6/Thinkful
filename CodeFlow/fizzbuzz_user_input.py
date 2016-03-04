@@ -5,7 +5,10 @@ min = 0
 maximum = 100
 
 if len(sys.argv) > 1:
-    max = int(sys.argv[1])
+    try:
+        max = int(sys.argv[1])
+    except ValueError:
+        max = -1
 else:
     max = -1
 
