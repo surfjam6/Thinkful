@@ -48,11 +48,14 @@ nouns_list = ["Owl", "Dog", "Lizard", "Hurricane", "Twister", "Slurpy", "Hawk", 
 def main():
   preferences = drink_preferences(questions)
   drink = construct_drink(preferences, ingredients)
-  print("\nI have created a drink according to your preferences. It will contain:")
-  for ingredient in drink:
-    print("A {}".format(ingredient))
-    
-  print("""Your drink is called a "{}, {}"!!""".format(random.choice(adjective_list), random.choice(nouns_list)))
+  if drink == []
+    print("Your drink has no ingredients!! Please start again"
+    exit()
+  else:
+    print("\nI have created a drink according to your preferences. It will contain:")
+    for ingredient in drink:
+      print("A {}".format(ingredient))
+    print("""Your drink is called a "{}, {}"!!""".format(random.choice(adjective_list), random.choice(nouns_list)))
   
 if __name__ == "__main__":
   main()
