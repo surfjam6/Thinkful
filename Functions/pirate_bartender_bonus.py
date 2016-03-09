@@ -48,9 +48,8 @@ nouns_list = ["Owl", "Dog", "Lizard", "Hurricane", "Twister", "Slurpy", "Hawk", 
 def main():
   preferences = drink_preferences(questions)
   drink = construct_drink(preferences, ingredients)
-  if drink == []
-    print("Your drink has no ingredients!! Please start again"
-    exit()
+  if not drink:
+    print("Your drink has no ingredients!! Please try again")
   else:
     print("\nI have created a drink according to your preferences. It will contain:")
     for ingredient in drink:
