@@ -2,13 +2,15 @@
 
 import random
 
-def drink_preferences(questions, preferences):
+def drink_preferences(questions):
+  preferences = {}
   """Asks customer preferences and created preferences dictionary"""
   for taste in questions:
     print(questions[taste])
     answer = str.lower(input("Please enter your response: (y/n)"))
     if answer == "y":
       preferences.update({taste: True})
+  return preferences
       
 def construct_drink(preferences, ingredients):
   """Constructs an returns a drink"""
@@ -33,10 +35,13 @@ ingredients = {
     "sweet": ["sugar cube", "spoonful of honey", "spash of cola"],
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
 }
-preferences = {}
-if __name__ == "__main__":
-  drink_preferences(questions, preferences)
+
+def main():
+  preferences = drink_preferences(questions)
   drink = construct_drink(preferences, ingredients)
-  print("\nI have created a drink according to your preferences. It will contain: \n {}".format(drink))
-    
-    
+  print("\nI have created a drink according to your preferences. It will contain:")
+  for ingredient in drink:
+    print("A {}".format(ingredient))
+  
+if __name__ == "__main__":
+  main()
