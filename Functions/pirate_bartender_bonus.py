@@ -46,6 +46,7 @@ adjective_list = ["Sporty","Fast", "Noisy", "Fluffy", "Squishy", "Green", "Blue"
 nouns_list = ["Owl", "Dog", "Lizard", "Hurricane", "Twister", "Slurpy", "Hawk", "Mouse"]
 
 def main():
+  while True:
     preferences = drink_preferences(questions)
     drink = construct_drink(preferences, ingredients)
     if not drink:
@@ -54,16 +55,20 @@ def main():
       print("\nI have created a drink according to your preferences. It will contain:")
       for ingredient in drink:
         print("A {}".format(ingredient))
-        print("""Your drink is called a "{}, {}"!!""".format(random.choice(adjective_list), random.choice(nouns_list)))
+      print("""Your drink is called a "{}, {}"!!""".format(random.choice(adjective_list), random.choice(nouns_list)))
     print("")
     print("Would you like another drink?")
     # Loop to check for legal entry:
     while True:
       repeat = str.lower(input("Please enter your response: (y/n)"))
+      print(repeat)
       if repeat in "yn":
         break
       else:
         print("""Incorrect entry, please enter "y" or "n".""")
-
+    if repeat not in "y":
+      print("Goodbye")
+      break
+  
 if __name__ == "__main__":
   main()
