@@ -10,7 +10,7 @@ def drink_preferences(questions):
 
     while True:
       answer = str.lower(input("Please enter your response: (y/n)"))
-      if answer in "YyNn":
+      if answer in "yn":
         break
       else:
         print("""Incorrect entry, please enter "y" or "n".""")
@@ -46,15 +46,24 @@ adjective_list = ["Sporty","Fast", "Noisy", "Fluffy", "Squishy", "Green", "Blue"
 nouns_list = ["Owl", "Dog", "Lizard", "Hurricane", "Twister", "Slurpy", "Hawk", "Mouse"]
 
 def main():
-  preferences = drink_preferences(questions)
-  drink = construct_drink(preferences, ingredients)
-  if not drink:
-    print("Your drink has no ingredients!! Please try again")
-  else:
-    print("\nI have created a drink according to your preferences. It will contain:")
-    for ingredient in drink:
-      print("A {}".format(ingredient))
-    print("""Your drink is called a "{}, {}"!!""".format(random.choice(adjective_list), random.choice(nouns_list)))
-  
+    preferences = drink_preferences(questions)
+    drink = construct_drink(preferences, ingredients)
+    if not drink:
+      print("Your drink has no ingredients!! Please try again")
+    else:
+      print("\nI have created a drink according to your preferences. It will contain:")
+      for ingredient in drink:
+        print("A {}".format(ingredient))
+        print("""Your drink is called a "{}, {}"!!""".format(random.choice(adjective_list), random.choice(nouns_list)))
+    print("")
+    print("Would you like another drink?")
+    # Loop to check for legal entry:
+    while True:
+      repeat = str.lower(input("Please enter your response: (y/n)"))
+      if repeat in "yn":
+        break
+      else:
+        print("""Incorrect entry, please enter "y" or "n".""")
+
 if __name__ == "__main__":
   main()
