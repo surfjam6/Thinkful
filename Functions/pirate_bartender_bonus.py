@@ -1,6 +1,8 @@
-# pirate_bartender.py
+# pirate_barsupply_countder.py
 
 import random
+
+supply_count = 10
 
 def get_customer_name():
   """Asks customer for name"""  
@@ -36,6 +38,13 @@ def construct_drink(preferences, ingredients):
     drink.append(random.choice(ingredients[taste]))
   return drink
 
+def bar(ingredient, inventory):
+  inventory[ingredient] -= 1
+  if inventory[ingredient] < supply_count/2:
+    restock = str.lower(input("Inventory of {} is low, should I restock?(y/n)\n".format(inventory[ingredient])))
+    if restock not in "n":
+      inventory[ingredient] = supply_count
+      print("I am restocking {}".format(inventory[ingredient]))
 
 questions = {
     "strong": "Do ye like yer drinks strong?",
@@ -51,6 +60,14 @@ ingredients = {
     "bitter": ["shake of bitters", "splash of tonic", "twist of lemon peel"],
     "sweet": ["sugar cube", "spoonful of honey", "spash of cola"],
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
+}
+
+inventory = {
+    "glug of rum": supply_count, "slug of whisky": supply_count, "splash of gin": supply_count,
+    "olive on a stick": supply_count, "salt-dusted rim": supply_count, "rasher of bacon": supply_count,
+    "shake of bitters": supply_count, "splash of tonic": supply_count, "twist of lemon peel": supply_count,
+    "sugar cube": supply_count, "spoonful of honey": supply_count, "spash of cola": supply_count,
+    "slice of orange": supply_count, "dash of cassis": supply_count, "cherry on top": supply_count
 }
 
 adjective_list = ["Sporty","Fast", "Noisy", "Fluffy", "Squishy", "Green", "Blue", "Icy", "Chilled", "Spotted", "Snowy"]
@@ -75,6 +92,7 @@ def main():
       print("\nI have created a drink according to your preferences. It will contain:")
       for ingredient in drink:
         print("A {}".format(ingredient))
+        bar(ingredient, inventory)
       print("""Your drink is called a "{}, {}"!!""".format(random.choice(adjective_list), random.choice(nouns_list)))
     print("")
     print("Would you like another drink?")
