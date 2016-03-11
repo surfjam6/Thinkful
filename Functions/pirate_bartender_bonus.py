@@ -2,8 +2,19 @@
 
 import random
 
+def get_customer_name():
+  """Asks customer for name"""  
+  name = str.capitalize(input("Please enter your name: "))
+  return name
+  
+def customer_lookup(name, customer_preferences_list):
+  if name in customer_preferences_list:
+    use_previous = str.lower(input("Would you like to use your previous preferences ? {}\n".format(customer_preferences_list[name])))
+    if use_previous in "y":
+      return True
+
 def drink_preferences(questions):
-  preferences = {}
+  preferences = []
   """Asks customer preferences and created preferences dictionary"""
   for taste in questions:
     print(questions[taste])
@@ -15,11 +26,11 @@ def drink_preferences(questions):
       else:
         print("""Incorrect entry, please enter "y" or "n".""")
     if answer == "y":
-      preferences.update({taste: True})
+      preferences.append(taste)
   return preferences
       
 def construct_drink(preferences, ingredients):
-  """Constructs an returns a drink"""
+  """Constructs and returns a drink"""
   drink = []
   for taste in preferences:
     drink.append(random.choice(ingredients[taste]))
@@ -44,10 +55,19 @@ ingredients = {
 
 adjective_list = ["Sporty","Fast", "Noisy", "Fluffy", "Squishy", "Green", "Blue", "Icy", "Chilled", "Spotted", "Snowy"]
 nouns_list = ["Owl", "Dog", "Lizard", "Hurricane", "Twister", "Slurpy", "Hawk", "Mouse"]
+customer_preferences_list = {}
 
 def main():
+  
   while True:
-    preferences = drink_preferences(questions)
+    name = get_customer_name()
+    found = customer_lookup(name, customer_preferences_list)
+    if found:
+      preferences = customer_preferences_list[name]
+    else:
+      preferences = drink_preferences(questions)
+    customer_preferences_list.update({name: preferences})
+#    print(customer_preferences_list)
     drink = construct_drink(preferences, ingredients)
     if not drink:
       print("Your drink has no ingredients!! Please try again")
