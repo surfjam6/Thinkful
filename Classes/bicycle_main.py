@@ -18,7 +18,7 @@ def main():
         print(JoesBicycleStore.inventory["mountain_bike"])
         print(JoesBicycleStore.margin)
         for i in range(len(customer_list)):
-            print("Customer Name: {}, Budget: ${}".format(customer_list[i].name, customer_list[i].budget))
+            print("Customer Name: {}, Budget: ${:,.2f}".format(customer_list[i].name, customer_list[i].budget))
         break
         
 
